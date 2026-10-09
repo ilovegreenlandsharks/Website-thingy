@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Very Important Questionnaire</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f7f3ee;
+            font-family: 'Quicksand', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            color: #4a403a;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 2px solid #e3d7cd;
+            border-radius: 16px;
+            padding: 30px;
+            width: 85%;
+            max-width: 400px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        button {
+            background-color: #d4a373;
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        button:hover {
+            background-color: #bc6c25;
+            transform: scale(1.05);
+        }
+
+        button.secondary {
+            background-color: #e9edc9;
+            color: #386641;
+        }
+
+        button.secondary:hover {
+            background-color: #ccd5ae;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Walking Teddy Bear Animation at Bottom */
+        .teddy-container {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            overflow: hidden;
+            height: 60px;
+            z-index: 1;
+        }
+
+        .teddy {
+            position: absolute;
+            font-size: 2rem;
+            animation: pace 8s linear infinite alternate;
+        }
+
+        @keyframes pace {
+            0% { left: 5%; transform: scaleX(1); }
+            100% { left: 85%; transform: scaleX(-1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card" id="card-container">
+        <!-- Step 1 -->
+        <div id="step-1" class="step">
+            <h2 id="q1-text">Do you like women?????[span_5](start_span)[span_5](end_span)</h2>
+            <div class="btn-container">
+                <button onclick="nextStep(2)">Yes</button>
+                <button class="secondary" onclick="divertPath('well shitt I Mayhaps have a crush on you.')">No</button> <!--[span_6](start_span)[span_6](end_span) -->
+            </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div id="step-2" class="step hidden">
+            <h2>Are you single?????[span_7](start_span)[span_7](end_span)</h2>
+            <div class="btn-container">
+                <button onclick="nextStep(3)">Yes</button>
+                <button class="secondary" onclick="divertPath('so like I am sorry but like I have a crush on you and yeah umm just need the rejection')">No</button> <!--[span_8](start_span)[span_8](end_span) -->
+            </div>
+        </div>
+
+        <!-- Step 3 (Final Confession) -->
+        <div id="step-3" class="step hidden">
+            <h2 style="font-size: 1.1rem; text-align: left;">
+                You are like super cool and like really pretty and I love yapping with you, so I low key maybe have a crush on you and like yeah[span_9](start_span)[span_9](end_span). <br><br>
+                It’s okay if you don’t like me back. I just needed to get it off my chest because it has been driving me insane…[span_10](start_span)[span_10](end_span) <br><br>
+                anyways uhhh bye or peace and love 🫰[span_11](start_span)[span_11](end_span)
+            </h2>
+            <div class="btn-container">
+                <button onclick="resetApp()">Start Over 🧸</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pacing Teddy Bear -->
+    <div class="teddy-container">
+        <div class="teddy">🧸</div>
+    </div>
+
+    <script>
+        function nextStep(stepNumber) {
+            document.querySelectorAll('.step').forEach(el => el.classList.add('hidden'));
+            document.getElementById('step-' + stepNumber).classList.remove('hidden');
+        }
+
+        function divertPath(message) {
+            const container = document.getElementById('card-container');
+            container.innerHTML = `<h2>${message}</h2><br><button onclick="resetApp()">Restart</button>`;
+        }
+
+        function resetApp() {
+            location.reload();
+        }
+    </script>
+</body>
+</html>
